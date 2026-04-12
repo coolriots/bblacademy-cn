@@ -1,0 +1,273 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="referrer" content="strict-origin-when-cross-origin">
+    <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'; style-src 'self' 'unsafe-inline'; font-src 'self'; img-src 'self' data:; connect-src 'self' https://formspree.io; frame-ancestors 'none'; base-uri 'self'; form-action 'self' https://formspree.io; object-src 'none'">
+    <meta http-equiv="X-Content-Type-Options" content="nosniff">
+    <title>联系我们 - BBL Academy</title>
+    <meta name="description" content="联系BBL Academy — 咨询培训项目、合作机会或为您的学校及机构提供咨询服务。">
+    <link rel="icon" type="image/x-icon" href="favicon.ico">
+    <link rel="icon" type="image/png" sizes="32x32" href="favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="favicon-16x16.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="apple-touch-icon.png">
+    <link rel="manifest" href="site.webmanifest">
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <header class="header">
+        <nav class="nav container">
+            <a href="index.html" class="logo">
+                <img src="BBL Academy Logo.jpg" alt="BBL Academy" class="logo-img">
+                <span class="logo-text">BBL Academy</span>
+            </a>
+            <ul class="nav-links">
+                <li><a href="what-is-bbl.html">什么是脑基础学习法？</a></li>
+                <li><a href="brain-share.html">脑智分享</a></li>
+                <li><a href="about.html">关于我们</a></li>
+                <li><a href="programmes.html">培训项目</a></li>
+                <li><a href="contact.html" class="active">联系我们</a></li>
+            </ul>
+            <a href="contact.html" class="btn btn-primary">与我们合作</a>
+            <button class="mobile-menu-btn" aria-label="切换菜单">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+        </nav>
+    </header>
+
+    <main>
+        <!-- Hero Section -->
+        <section class="page-hero contact-hero">
+            <div class="container">
+                <span class="section-tag">联系我们</span>
+                <h1>开启一段对话</h1>
+                <p class="hero-subtitle">无论您是教育工作者、学校领导还是企业培训师，我们都期待听到您的声音。告诉我们您的目标，我们将携手为您找到最合适的前进方向。</p>
+            </div>
+        </section>
+
+        <!-- Contact Layout -->
+        <section class="contact-section">
+            <div class="container">
+                <div class="contact-grid">
+
+                    <!-- Left: Contact Form -->
+                    <div class="contact-form-col">
+                        <div class="contact-form-card">
+                            <h2>给我们留言</h2>
+                            <p class="contact-form-intro">请填写以下表格，我们的团队将在2个工作日内回复您。</p>
+
+                            <form class="contact-form" action="https://formspree.io/f/mykwdllq" method="POST" id="contactForm">
+                                <div class="form-row">
+                                    <div class="form-group">
+                                        <label for="name">姓名 <span class="required">*</span></label>
+                                        <input type="text" id="name" name="name" placeholder="您的姓名" required maxlength="100" autocomplete="name">
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="email">电子邮件 <span class="required">*</span></label>
+                                        <input type="email" id="email" name="email" placeholder="you@example.com" required maxlength="200" autocomplete="email">
+                                    </div>
+                                </div>
+                                <div class="form-row">
+                                    <div class="form-group">
+                                        <label for="organisation">机构 / 学校</label>
+                                        <input type="text" id="organisation" name="organisation" placeholder="您的工作单位" maxlength="200" autocomplete="organization">
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="role">您的职位</label>
+                                        <input type="text" id="role" name="role" placeholder="例如：部门负责人" maxlength="100">
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label for="interest">我感兴趣的是 <span class="required">*</span></label>
+                                    <select id="interest" name="interest" required>
+                                        <option value="" disabled selected>请选择主题</option>
+                                        <option value="educator-training">教育工作者培训与认证（CBBE）</option>
+                                        <option value="leadership">领导力与学校转型</option>
+                                        <option value="early-childhood">幼儿及青少年项目</option>
+                                        <option value="corporate">成人与企业学习</option>
+                                        <option value="research">研究与合作</option>
+                                        <option value="consultancy">咨询与课程开发</option>
+                                        <option value="general">一般咨询</option>
+                                    </select>
+                                </div>
+                                <div class="form-group">
+                                    <label for="message">请详细说明 <span class="required">*</span></label>
+                                    <textarea id="message" name="message" rows="5" placeholder="请分享您的目标、团队规模或具体问题..." required maxlength="2000"></textarea>
+                                </div>
+                                <!-- Honeypot spam filter -->
+                                <input type="text" name="_gotcha" style="display:none">
+                                <input type="hidden" name="_next" value="">
+                                <button type="submit" class="btn btn-primary btn-large contact-submit-btn">发送消息</button>
+                            </form>
+                        </div>
+                    </div>
+
+                    <!-- Right: Contact Info -->
+                    <div class="contact-info-col">
+
+                        <div class="contact-info-card">
+                            <h3>联系方式</h3>
+                            <div class="contact-detail">
+                                <span class="contact-detail-icon">📧</span>
+                                <div>
+                                    <p class="contact-detail-label">电子邮件</p>
+                                    <a href="mailto:hello@bblacademy.sg" class="contact-detail-value">hello@bblacademy.sg</a>
+                                </div>
+                            </div>
+                            <div class="contact-detail">
+                                <span class="contact-detail-icon">📍</span>
+                                <div>
+                                    <p class="contact-detail-label">地点</p>
+                                    <p class="contact-detail-value">新加坡</p>
+                                </div>
+                            </div>
+                            <div class="contact-detail">
+                                <span class="contact-detail-icon">🕐</span>
+                                <div>
+                                    <p class="contact-detail-label">响应时间</p>
+                                    <p class="contact-detail-value">2个工作日内</p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="contact-info-card">
+                            <h3>接下来会发生什么？</h3>
+                            <div class="contact-steps">
+                                <div class="contact-step">
+                                    <span class="contact-step-num">1</span>
+                                    <div>
+                                        <h4>我们审阅您的咨询</h4>
+                                        <p>我们的团队认真阅读每一条留言，并将其转交给最合适的负责人。</p>
+                                    </div>
+                                </div>
+                                <div class="contact-step">
+                                    <span class="contact-step-num">2</span>
+                                    <div>
+                                        <h4>我们主动联系</h4>
+                                        <p>我们将在2个工作日内回复您，进一步了解您的需求。</p>
+                                    </div>
+                                </div>
+                                <div class="contact-step">
+                                    <span class="contact-step-num">3</span>
+                                    <div>
+                                        <h4>我们提出方案</h4>
+                                        <p>我们将为您推荐最适合的培训项目、咨询方案或合作模式。</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="contact-info-card contact-social-card">
+                            <h3>关注我们</h3>
+                            <p>获取脑基础学习法的最新资讯、见解与活动信息。</p>
+                            <div class="contact-social-links">
+                                <a href="#" class="contact-social-btn" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn">
+                                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" width="20" height="20"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 01-2.063-2.065 2.064 2.064 0 112.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>
+                                    LinkedIn
+                                </a>
+                                <a href="#" class="contact-social-btn" target="_blank" rel="noopener noreferrer" aria-label="Facebook">
+                                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" width="20" height="20"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg>
+                                    Facebook
+                                </a>
+                                <a href="#" class="contact-social-btn" target="_blank" rel="noopener noreferrer" aria-label="Instagram">
+                                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" width="20" height="20"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 100 12.324 6.162 6.162 0 000-12.324zM12 16a4 4 0 110-8 4 4 0 010 8zm6.406-11.845a1.44 1.44 0 100 2.881 1.44 1.44 0 000-2.881z"/></svg>
+                                    Instagram
+                                </a>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- FAQ Section -->
+        <section class="contact-faq">
+            <div class="container">
+                <div class="section-header">
+                    <span class="section-tag">常见问题</span>
+                    <h2>常见问题解答</h2>
+                </div>
+                <div class="faq-grid">
+                    <div class="faq-item">
+                        <h4>您的项目适合哪些人群？</h4>
+                        <p>我们的项目服务各层级的教育工作者——从学前教师、K-12教育工作者，到企业培训师和学校领导。我们也与大学及科研机构开展合作。</p>
+                    </div>
+                    <div class="faq-item">
+                        <h4>是否提供线下和线上授课形式？</h4>
+                        <p>是的。我们的大多数项目提供线下（新加坡及区域）、线上或混合式培训形式。我们会根据您的需求和团队规模推荐最适合的授课方式。</p>
+                    </div>
+                    <div class="faq-item">
+                        <h4>项目可以为我们的学校定制吗？</h4>
+                        <p>当然可以。我们的咨询服务正是为此而设计。我们与您的领导层和教学团队紧密合作，按照您的实际情况量身定制内容、进度和授课方式。</p>
+                    </div>
+                    <div class="faq-item">
+                        <h4>完成CBBE认证需要多长时间？</h4>
+                        <p>认证脑基础教育工作者（CBBE）项目共分3个等级，包含12个核心模块。完成时间因队列形式而异，通常完整认证需要3至6个月。</p>
+                    </div>
+                    <div class="faq-item">
+                        <h4>您们是否与企业机构合作？</h4>
+                        <p>是的。第四培训方向（成人与企业学习）专为企业环境中的人才发展团队、企业培训师和领导力培训师设计。</p>
+                    </div>
+                    <div class="faq-item">
+                        <h4>BBL Academy仅在新加坡吗？</h4>
+                        <p>我们的总部设在新加坡，但服务范围覆盖亚洲各地的教育工作者。我们的愿景是成为东南亚乃至更广泛地区神经科学教育领域的区域枢纽。</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-brand">
+                    <a href="index.html" class="logo">
+                        <img src="BBL Academy Logo.jpg" alt="BBL Academy" class="logo-img logo-img-footer">
+                        <span class="logo-text">BBL Academy Pte Ltd</span>
+                    </a>
+                    <p>赋能教育工作者与学习者，以契合大脑最佳学习规律的方式教学、思考与成长。</p>
+                </div>
+                <div class="footer-links">
+                    <h4>快速链接</h4>
+                    <ul>
+                        <li><a href="what-is-bbl.html">什么是脑基础学习法？</a></li>
+                        <li><a href="brain-share.html">脑智分享</a></li>
+                        <li><a href="about.html">关于我们</a></li>
+                        <li><a href="programmes.html">培训项目</a></li>
+                        <li><a href="contact.html">联系我们</a></li>
+                    </ul>
+                </div>
+                <div class="footer-links">
+                    <h4>培训项目</h4>
+                    <ul>
+                        <li><a href="programmes.html#track-early">学前教育教师</a></li>
+                        <li><a href="programmes.html#track-corporate">企业机构</a></li>
+                        <li><a href="programmes.html#track-corporate">成人教育工作者</a></li>
+                        <li><a href="programmes.html#track-educator">K-12教育</a></li>
+                        <li><a href="programmes.html">咨询服务</a></li>
+                    </ul>
+                </div>
+                <div class="footer-links">
+                    <h4>关注我们</h4>
+                    <ul>
+                        <li><a href="#" rel="noopener noreferrer" target="_blank">Facebook</a></li>
+                        <li><a href="#" rel="noopener noreferrer" target="_blank">LinkedIn</a></li>
+                        <li><a href="#" rel="noopener noreferrer" target="_blank">Instagram</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2026 BBL Academy。保留所有权利。</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>

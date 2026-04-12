@@ -1,0 +1,21 @@
+# OS files
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# Python
+__pycache__/
+*.py
+*.pyc
+.env
+
+# Deployment artifacts
+.wrangler/
+
+# Editor
+.vscode/
+.idea/
+
+# Credentials — never commit
+*.key
+*.pem
