@@ -1,0 +1,966 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="referrer" content="strict-origin-when-cross-origin">
+    <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline'; font-src 'self'; img-src 'self' data:; media-src 'self' https://www.bblacademy.cn; connect-src 'self'; frame-src 'self'; frame-ancestors 'none'; base-uri 'self'; form-action 'none'; object-src 'none'">
+    <meta http-equiv="X-Content-Type-Options" content="nosniff">
+    <meta name="robots" content="noindex, nofollow">
+    <title>幼儿教育脑基础学习课程 — BBL学院</title>
+    <link rel="icon" type="image/x-icon" href="favicon.ico">
+    <link rel="icon" type="image/png" sizes="32x32" href="favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="favicon-16x16.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="apple-touch-icon.png">
+    <style>
+        /* ── Base ── */
+        *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+        :root {
+            --navy:      #1B2A4A;
+            --navy-dark: #111D35;
+            --navy-light:#2C4470;
+            --gold:      #D4982A;
+            --gold-light:#E8B04E;
+            --gold-dark: #B07D1E;
+            --white:     #ffffff;
+            --gray-50:   #f8f9fa;
+            --gray-100:  #f0f1f3;
+            --gray-300:  #ced4da;
+            --gray-600:  #6c757d;
+            --radius:    12px;
+            --shadow:    0 2px 8px rgba(0,0,0,0.10);
+            --shadow-lg: 0 8px 24px rgba(0,0,0,0.14);
+            font-family: 'PingFang SC', 'Hiragino Sans GB', 'Microsoft YaHei',
+                         'WenQuanYi Micro Hei', -apple-system, BlinkMacSystemFont, sans-serif;
+        }
+
+        body {
+            background: var(--gray-50);
+            color: var(--navy);
+            min-height: 100vh;
+        }
+
+        /* ── Lock Screen ── */
+        #lock-screen {
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            background: linear-gradient(135deg, var(--navy-dark) 0%, var(--navy) 60%, var(--navy-light) 100%);
+            padding: 1.5rem;
+        }
+
+        .lock-card {
+            background: var(--white);
+            border-radius: 20px;
+            padding: 2.5rem 2rem;
+            max-width: 420px;
+            width: 100%;
+            text-align: center;
+            box-shadow: var(--shadow-lg);
+        }
+
+        .lock-logo {
+            width: 72px;
+            height: 72px;
+            background: linear-gradient(135deg, var(--navy), var(--navy-light));
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 1.25rem;
+            font-size: 2rem;
+        }
+
+        .lock-card h1 {
+            font-size: 1.35rem;
+            font-weight: 700;
+            color: var(--navy);
+            margin-bottom: 0.4rem;
+            line-height: 1.4;
+        }
+
+        .lock-card .subtitle {
+            font-size: 0.9rem;
+            color: var(--gray-600);
+            margin-bottom: 1.75rem;
+        }
+
+        .lock-label {
+            font-size: 0.85rem;
+            font-weight: 600;
+            color: var(--navy);
+            text-align: left;
+            display: block;
+            margin-bottom: 0.4rem;
+        }
+
+        #access-key {
+            width: 100%;
+            padding: 0.75rem 1rem;
+            border: 2px solid var(--gray-300);
+            border-radius: var(--radius);
+            font-size: 1rem;
+            font-family: inherit;
+            color: var(--navy);
+            outline: none;
+            transition: border-color 0.2s;
+            letter-spacing: 0.1em;
+            margin-bottom: 0.75rem;
+        }
+
+        #access-key:focus {
+            border-color: var(--gold);
+        }
+
+        #access-key.error {
+            border-color: #e53e3e;
+            animation: shake 0.35s ease;
+        }
+
+        @keyframes shake {
+            0%, 100% { transform: translateX(0); }
+            25%       { transform: translateX(-6px); }
+            75%       { transform: translateX(6px); }
+        }
+
+        #error-msg {
+            display: none;
+            font-size: 0.85rem;
+            color: #e53e3e;
+            margin-bottom: 0.75rem;
+        }
+
+        .btn-unlock {
+            width: 100%;
+            padding: 0.8rem 1rem;
+            background: linear-gradient(135deg, var(--gold), var(--gold-light));
+            color: var(--navy-dark);
+            border: none;
+            border-radius: var(--radius);
+            font-size: 1rem;
+            font-weight: 700;
+            font-family: inherit;
+            cursor: pointer;
+            transition: opacity 0.2s, transform 0.15s;
+        }
+
+        .btn-unlock:hover  { opacity: 0.92; }
+        .btn-unlock:active { transform: scale(0.98); }
+
+        .lock-note {
+            margin-top: 1.5rem;
+            font-size: 0.78rem;
+            color: var(--gray-600);
+        }
+
+        /* ── Course Page ── */
+        #course-content { display: none; }
+
+        .course-header {
+            background: linear-gradient(135deg, var(--navy-dark) 0%, var(--navy) 70%, var(--navy-light) 100%);
+            color: var(--white);
+            padding: 2rem 1.5rem 1.75rem;
+            text-align: center;
+        }
+
+        .course-header .badge {
+            display: inline-block;
+            background: rgba(212, 152, 42, 0.25);
+            border: 1px solid var(--gold);
+            color: var(--gold-light);
+            border-radius: 20px;
+            padding: 0.3rem 0.9rem;
+            font-size: 0.8rem;
+            font-weight: 600;
+            letter-spacing: 0.05em;
+            margin-bottom: 0.75rem;
+        }
+
+        .course-header h1 {
+            font-size: clamp(1.3rem, 3vw, 1.8rem);
+            font-weight: 700;
+            line-height: 1.35;
+            margin-bottom: 0.5rem;
+        }
+
+        .course-header p {
+            font-size: 0.9rem;
+            opacity: 0.8;
+            max-width: 500px;
+            margin: 0 auto;
+        }
+
+        .course-header .lock-out-btn {
+            margin-top: 1rem;
+            background: transparent;
+            border: 1px solid rgba(255,255,255,0.35);
+            color: rgba(255,255,255,0.75);
+            padding: 0.35rem 0.9rem;
+            border-radius: 20px;
+            font-size: 0.78rem;
+            font-family: inherit;
+            cursor: pointer;
+            transition: border-color 0.2s, color 0.2s;
+        }
+        .course-header .lock-out-btn:hover {
+            border-color: rgba(255,255,255,0.7);
+            color: var(--white);
+        }
+
+        /* ── Tabs ── */
+        .tab-bar {
+            background: var(--white);
+            border-bottom: 2px solid var(--gray-100);
+            display: flex;
+            justify-content: center;
+            gap: 0;
+            position: sticky;
+            top: 0;
+            z-index: 10;
+            box-shadow: 0 2px 6px rgba(0,0,0,0.06);
+        }
+
+        .tab-btn {
+            padding: 1rem 2rem;
+            border: none;
+            background: transparent;
+            font-size: 0.95rem;
+            font-family: inherit;
+            font-weight: 600;
+            color: var(--gray-600);
+            cursor: pointer;
+            border-bottom: 3px solid transparent;
+            transition: color 0.2s, border-color 0.2s;
+            display: flex;
+            align-items: center;
+            gap: 0.4rem;
+        }
+
+        .tab-btn:hover  { color: var(--navy); }
+
+        .tab-btn.active {
+            color: var(--navy);
+            border-bottom-color: var(--gold);
+        }
+
+        .tab-icon { font-size: 1.1rem; }
+
+        /* ── Tab Content ── */
+        .tab-content { display: none; }
+        .tab-content.active { display: block; }
+
+        .section-container {
+            max-width: 860px;
+            margin: 0 auto;
+            padding: 1.75rem 1.25rem 3rem;
+        }
+
+        .section-intro {
+            font-size: 0.9rem;
+            color: var(--gray-600);
+            margin-bottom: 1.25rem;
+            padding-bottom: 1rem;
+            border-bottom: 1px solid var(--gray-100);
+        }
+
+        /* ── Audio Cards ── */
+        .audio-card {
+            background: var(--white);
+            border-radius: var(--radius);
+            padding: 1.1rem 1.25rem;
+            margin-bottom: 0.85rem;
+            box-shadow: var(--shadow);
+            display: flex;
+            flex-direction: column;
+            gap: 0.5rem;
+        }
+
+        .audio-card-header {
+            display: flex;
+            align-items: flex-start;
+            gap: 0.85rem;
+        }
+
+        .episode-num {
+            min-width: 36px;
+            height: 36px;
+            background: linear-gradient(135deg, var(--navy), var(--navy-light));
+            color: var(--white);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 0.85rem;
+            font-weight: 700;
+            flex-shrink: 0;
+        }
+
+        .audio-meta { flex: 1; }
+
+        .audio-meta h3 {
+            font-size: 0.95rem;
+            font-weight: 700;
+            color: var(--navy);
+            margin-bottom: 0.2rem;
+            line-height: 1.35;
+        }
+
+        .audio-meta .desc {
+            font-size: 0.8rem;
+            color: var(--gray-600);
+        }
+
+        .audio-player {
+            width: 100%;
+            height: 36px;
+            accent-color: var(--gold);
+            margin-top: 0.25rem;
+        }
+
+        /* ── Video Cards ── */
+        .video-card {
+            background: var(--white);
+            border-radius: var(--radius);
+            overflow: hidden;
+            margin-bottom: 1.25rem;
+            box-shadow: var(--shadow);
+        }
+
+        .video-wrapper {
+            position: relative;
+            background: #000;
+        }
+
+        .video-wrapper video {
+            width: 100%;
+            display: block;
+            max-height: 360px;
+        }
+
+        .video-info {
+            padding: 0.9rem 1.1rem;
+            display: flex;
+            align-items: flex-start;
+            gap: 0.75rem;
+        }
+
+        .video-num {
+            min-width: 32px;
+            height: 32px;
+            background: linear-gradient(135deg, var(--gold), var(--gold-light));
+            color: var(--navy-dark);
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 0.8rem;
+            font-weight: 700;
+            flex-shrink: 0;
+        }
+
+        .video-meta h3 {
+            font-size: 0.95rem;
+            font-weight: 700;
+            color: var(--navy);
+            margin-bottom: 0.15rem;
+            line-height: 1.35;
+        }
+
+        .video-meta .desc {
+            font-size: 0.8rem;
+            color: var(--gray-600);
+        }
+
+        /* ── PDF Cards ── */
+        .pdf-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+            gap: 1rem;
+        }
+
+        .pdf-card {
+            background: var(--white);
+            border-radius: var(--radius);
+            padding: 1.1rem;
+            box-shadow: var(--shadow);
+            display: flex;
+            flex-direction: column;
+            gap: 0.75rem;
+            transition: box-shadow 0.2s;
+        }
+
+        .pdf-card:hover { box-shadow: var(--shadow-lg); }
+
+        .pdf-icon-row {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+        }
+
+        .pdf-icon {
+            width: 44px;
+            height: 44px;
+            background: linear-gradient(135deg, #e53e3e, #fc8181);
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.3rem;
+            flex-shrink: 0;
+        }
+
+        .pdf-meta h3 {
+            font-size: 0.9rem;
+            font-weight: 700;
+            color: var(--navy);
+            line-height: 1.35;
+            margin-bottom: 0.1rem;
+        }
+
+        .pdf-meta .desc {
+            font-size: 0.78rem;
+            color: var(--gray-600);
+        }
+
+        .btn-download {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.4rem;
+            padding: 0.55rem 1rem;
+            background: var(--navy);
+            color: var(--white);
+            text-decoration: none;
+            border-radius: 8px;
+            font-size: 0.85rem;
+            font-weight: 600;
+            font-family: inherit;
+            transition: background 0.2s;
+            margin-top: auto;
+        }
+
+        .btn-download:hover { background: var(--navy-light); }
+
+        /* ── Footer ── */
+        .course-footer {
+            background: var(--navy-dark);
+            color: rgba(255,255,255,0.5);
+            text-align: center;
+            padding: 1.25rem;
+            font-size: 0.78rem;
+        }
+
+        /* ── Responsive ── */
+        @media (max-width: 600px) {
+            .tab-btn { padding: 0.85rem 1rem; font-size: 0.85rem; }
+            .tab-btn .tab-label { display: none; }
+            .tab-icon { font-size: 1.4rem; }
+            .pdf-grid { grid-template-columns: 1fr; }
+        }
+    </style>
+</head>
+<body>
+
+<!-- ════════════════════════════════════════
+     LOCK SCREEN
+     ════════════════════════════════════════ -->
+<div id="lock-screen">
+    <div class="lock-card">
+        <div class="lock-logo">🧠</div>
+        <h1>幼儿教育<br>脑基础学习课程</h1>
+        <p class="subtitle">BBL学院 — 课程资料库</p>
+        <label class="lock-label" for="access-key">访问码</label>
+        <input type="password" id="access-key" placeholder="请输入访问码"
+               autocomplete="off" autocorrect="off" spellcheck="false">
+        <p id="error-msg">访问码不正确，请重试。</p>
+        <button class="btn-unlock" onclick="unlock()">进入课程 →</button>
+        <p class="lock-note">如需访问码，请联系您的课程协调员。</p>
+    </div>
+</div>
+
+<!-- ════════════════════════════════════════
+     COURSE CONTENT
+     ════════════════════════════════════════ -->
+<div id="course-content">
+
+    <!-- Header -->
+    <div class="course-header">
+        <div class="badge">BBL学院 · 认证课程</div>
+        <h1>幼儿教育脑基础学习课程</h1>
+        <p>课程资料 — 音频、视频与讲义下载</p>
+        <button class="lock-out-btn" onclick="lockOut()">退出 ×</button>
+    </div>
+
+    <!-- Tab Bar -->
+    <div class="tab-bar">
+        <button class="tab-btn active" onclick="showTab('audio', this)">
+            <span class="tab-icon">🎧</span>
+            <span class="tab-label">音频讲座</span>
+        </button>
+        <button class="tab-btn" onclick="showTab('video', this)">
+            <span class="tab-icon">🎬</span>
+            <span class="tab-label">教学视频</span>
+        </button>
+        <button class="tab-btn" onclick="showTab('pdf', this)">
+            <span class="tab-icon">📄</span>
+            <span class="tab-label">讲义下载</span>
+        </button>
+    </div>
+
+    <!-- ── AUDIO TAB ── -->
+    <div id="tab-audio" class="tab-content active">
+        <div class="section-container">
+            <p class="section-intro">共8集音频讲座，建议按顺序收听。</p>
+
+            <!-- Episode 1 -->
+            <div class="audio-card">
+                <div class="audio-card-header">
+                    <div class="episode-num">01</div>
+                    <div class="audio-meta">
+                        <h3>第一讲：脑基础学习法简介</h3>
+                        <span class="desc">什么是脑基础学习？神经科学如何指导幼儿教育。</span>
+                    </div>
+                </div>
+                <audio class="audio-player" controls preload="none">
+                    <source src="course-ec/audio/episode-01.mp3" type="audio/mpeg">
+                    您的浏览器不支持音频播放。
+                </audio>
+            </div>
+
+            <!-- Episode 2 -->
+            <div class="audio-card">
+                <div class="audio-card-header">
+                    <div class="episode-num">02</div>
+                    <div class="audio-meta">
+                        <h3>第二讲：幼儿大脑的发育特点</h3>
+                        <span class="desc">0–6岁儿童大脑发育关键期及教育启示。</span>
+                    </div>
+                </div>
+                <audio class="audio-player" controls preload="none">
+                    <source src="course-ec/audio/episode-02.mp3" type="audio/mpeg">
+                    您的浏览器不支持音频播放。
+                </audio>
+            </div>
+
+            <!-- Episode 3 -->
+            <div class="audio-card">
+                <div class="audio-card-header">
+                    <div class="episode-num">03</div>
+                    <div class="audio-meta">
+                        <h3>第三讲：情绪与学习的关系</h3>
+                        <span class="desc">安全的情绪环境如何促进认知发展。</span>
+                    </div>
+                </div>
+                <audio class="audio-player" controls preload="none">
+                    <source src="course-ec/audio/episode-03.mp3" type="audio/mpeg">
+                    您的浏览器不支持音频播放。
+                </audio>
+            </div>
+
+            <!-- Episode 4 -->
+            <div class="audio-card">
+                <div class="audio-card-header">
+                    <div class="episode-num">04</div>
+                    <div class="audio-meta">
+                        <h3>第四讲：注意力与记忆力的培养</h3>
+                        <span class="desc">通过游戏与互动提升幼儿专注力与记忆力。</span>
+                    </div>
+                </div>
+                <audio class="audio-player" controls preload="none">
+                    <source src="course-ec/audio/episode-04.mp3" type="audio/mpeg">
+                    您的浏览器不支持音频播放。
+                </audio>
+            </div>
+
+            <!-- Episode 5 -->
+            <div class="audio-card">
+                <div class="audio-card-header">
+                    <div class="episode-num">05</div>
+                    <div class="audio-meta">
+                        <h3>第五讲：运动与大脑发育</h3>
+                        <span class="desc">身体活动对幼儿认知和情绪发展的神经科学基础。</span>
+                    </div>
+                </div>
+                <audio class="audio-player" controls preload="none">
+                    <source src="course-ec/audio/episode-05.mp3" type="audio/mpeg">
+                    您的浏览器不支持音频播放。
+                </audio>
+            </div>
+
+            <!-- Episode 6 -->
+            <div class="audio-card">
+                <div class="audio-card-header">
+                    <div class="episode-num">06</div>
+                    <div class="audio-meta">
+                        <h3>第六讲：游戏式学习的脑科学</h3>
+                        <span class="desc">为何游戏是幼儿最有效的学习方式。</span>
+                    </div>
+                </div>
+                <audio class="audio-player" controls preload="none">
+                    <source src="course-ec/audio/episode-06.mp3" type="audio/mpeg">
+                    您的浏览器不支持音频播放。
+                </audio>
+            </div>
+
+            <!-- Episode 7 -->
+            <div class="audio-card">
+                <div class="audio-card-header">
+                    <div class="episode-num">07</div>
+                    <div class="audio-meta">
+                        <h3>第七讲：差异化教学策略</h3>
+                        <span class="desc">如何根据不同学习风格设计课堂活动。</span>
+                    </div>
+                </div>
+                <audio class="audio-player" controls preload="none">
+                    <source src="course-ec/audio/episode-07.mp3" type="audio/mpeg">
+                    您的浏览器不支持音频播放。
+                </audio>
+            </div>
+
+            <!-- Episode 8 -->
+            <div class="audio-card">
+                <div class="audio-card-header">
+                    <div class="episode-num">08</div>
+                    <div class="audio-meta">
+                        <h3>第八讲：打造脑友好型课堂</h3>
+                        <span class="desc">课堂环境设计的实践建议与行动计划。</span>
+                    </div>
+                </div>
+                <audio class="audio-player" controls preload="none">
+                    <source src="course-ec/audio/episode-08.mp3" type="audio/mpeg">
+                    您的浏览器不支持音频播放。
+                </audio>
+            </div>
+
+        </div>
+    </div>
+
+    <!-- ── VIDEO TAB ── -->
+    <div id="tab-video" class="tab-content">
+        <div class="section-container">
+            <p class="section-intro">共8节教学视频，每节约15–30分钟。</p>
+
+            <!-- Video 1 -->
+            <div class="video-card">
+                <div class="video-wrapper">
+                    <video controls preload="none" playsinline>
+                        <source src="course-ec/video/lesson-01.mp4" type="video/mp4">
+                        您的浏览器不支持视频播放。
+                    </video>
+                </div>
+                <div class="video-info">
+                    <div class="video-num">01</div>
+                    <div class="video-meta">
+                        <h3>课节一：脑基础学习法概述</h3>
+                        <span class="desc">课程导论与学习框架介绍。</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Video 2 -->
+            <div class="video-card">
+                <div class="video-wrapper">
+                    <video controls preload="none" playsinline>
+                        <source src="course-ec/video/lesson-02.mp4" type="video/mp4">
+                        您的浏览器不支持视频播放。
+                    </video>
+                </div>
+                <div class="video-info">
+                    <div class="video-num">02</div>
+                    <div class="video-meta">
+                        <h3>课节二：幼儿神经发育里程碑</h3>
+                        <span class="desc">各阶段发展指标与课堂应用。</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Video 3 -->
+            <div class="video-card">
+                <div class="video-wrapper">
+                    <video controls preload="none" playsinline>
+                        <source src="course-ec/video/lesson-03.mp4" type="video/mp4">
+                        您的浏览器不支持视频播放。
+                    </video>
+                </div>
+                <div class="video-info">
+                    <div class="video-num">03</div>
+                    <div class="video-meta">
+                        <h3>课节三：情绪调节与师生关系</h3>
+                        <span class="desc">建立信任关系，促进安全型依附。</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Video 4 -->
+            <div class="video-card">
+                <div class="video-wrapper">
+                    <video controls preload="none" playsinline>
+                        <source src="course-ec/video/lesson-04.mp4" type="video/mp4">
+                        您的浏览器不支持视频播放。
+                    </video>
+                </div>
+                <div class="video-info">
+                    <div class="video-num">04</div>
+                    <div class="video-meta">
+                        <h3>课节四：注意力管理技巧示范</h3>
+                        <span class="desc">课堂实录：正念练习与专注力训练。</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Video 5 -->
+            <div class="video-card">
+                <div class="video-wrapper">
+                    <video controls preload="none" playsinline>
+                        <source src="course-ec/video/lesson-05.mp4" type="video/mp4">
+                        您的浏览器不支持视频播放。
+                    </video>
+                </div>
+                <div class="video-info">
+                    <div class="video-num">05</div>
+                    <div class="video-meta">
+                        <h3>课节五：感官学习与动觉活动</h3>
+                        <span class="desc">多感官整合教学活动设计示例。</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Video 6 -->
+            <div class="video-card">
+                <div class="video-wrapper">
+                    <video controls preload="none" playsinline>
+                        <source src="course-ec/video/lesson-06.mp4" type="video/mp4">
+                        您的浏览器不支持视频播放。
+                    </video>
+                </div>
+                <div class="video-info">
+                    <div class="video-num">06</div>
+                    <div class="video-meta">
+                        <h3>课节六：游戏化课程设计工作坊</h3>
+                        <span class="desc">如何将BBL理论融入每日教学计划。</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Video 7 -->
+            <div class="video-card">
+                <div class="video-wrapper">
+                    <video controls preload="none" playsinline>
+                        <source src="course-ec/video/lesson-07.mp4" type="video/mp4">
+                        您的浏览器不支持视频播放。
+                    </video>
+                </div>
+                <div class="video-info">
+                    <div class="video-num">07</div>
+                    <div class="video-meta">
+                        <h3>课节七：评估幼儿学习的新方式</h3>
+                        <span class="desc">真实性评估与记录学习成果。</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Video 8 -->
+            <div class="video-card">
+                <div class="video-wrapper">
+                    <video controls preload="none" playsinline>
+                        <source src="course-ec/video/lesson-08.mp4" type="video/mp4">
+                        您的浏览器不支持视频播放。
+                    </video>
+                </div>
+                <div class="video-info">
+                    <div class="video-num">08</div>
+                    <div class="video-meta">
+                        <h3>课节八：课程总结与持续发展</h3>
+                        <span class="desc">行动计划制定与专业学习社群建设。</span>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+    <!-- ── PDF TAB ── -->
+    <div id="tab-pdf" class="tab-content">
+        <div class="section-container">
+            <p class="section-intro">共8份课程讲义，点击下载PDF文件。</p>
+            <div class="pdf-grid">
+
+                <div class="pdf-card">
+                    <div class="pdf-icon-row">
+                        <div class="pdf-icon">📕</div>
+                        <div class="pdf-meta">
+                            <h3>课程导读手册</h3>
+                            <span class="desc">课程简介、学习目标与日程安排</span>
+                        </div>
+                    </div>
+                    <a class="btn-download" href="course-ec/pdf/handout-01.pdf" download>
+                        ↓ 下载讲义 01
+                    </a>
+                </div>
+
+                <div class="pdf-card">
+                    <div class="pdf-icon-row">
+                        <div class="pdf-icon">📕</div>
+                        <div class="pdf-meta">
+                            <h3>脑科学基础知识图</h3>
+                            <span class="desc">大脑结构与功能概览（双面印刷版）</span>
+                        </div>
+                    </div>
+                    <a class="btn-download" href="course-ec/pdf/handout-02.pdf" download>
+                        ↓ 下载讲义 02
+                    </a>
+                </div>
+
+                <div class="pdf-card">
+                    <div class="pdf-icon-row">
+                        <div class="pdf-icon">📕</div>
+                        <div class="pdf-meta">
+                            <h3>情绪调节策略工具卡</h3>
+                            <span class="desc">课堂可用的情绪识别与调节技巧卡片</span>
+                        </div>
+                    </div>
+                    <a class="btn-download" href="course-ec/pdf/handout-03.pdf" download>
+                        ↓ 下载讲义 03
+                    </a>
+                </div>
+
+                <div class="pdf-card">
+                    <div class="pdf-icon-row">
+                        <div class="pdf-icon">📕</div>
+                        <div class="pdf-meta">
+                            <h3>注意力训练活动集</h3>
+                            <span class="desc">20个适用于3–6岁幼儿的正念与专注练习</span>
+                        </div>
+                    </div>
+                    <a class="btn-download" href="course-ec/pdf/handout-04.pdf" download>
+                        ↓ 下载讲义 04
+                    </a>
+                </div>
+
+                <div class="pdf-card">
+                    <div class="pdf-icon-row">
+                        <div class="pdf-icon">📕</div>
+                        <div class="pdf-meta">
+                            <h3>感官学习活动设计模板</h3>
+                            <span class="desc">多感官课程计划填写模板与示例</span>
+                        </div>
+                    </div>
+                    <a class="btn-download" href="course-ec/pdf/handout-05.pdf" download>
+                        ↓ 下载讲义 05
+                    </a>
+                </div>
+
+                <div class="pdf-card">
+                    <div class="pdf-icon-row">
+                        <div class="pdf-icon">📕</div>
+                        <div class="pdf-meta">
+                            <h3>游戏化教学案例汇编</h3>
+                            <span class="desc">10个真实课堂BBL游戏教学案例分析</span>
+                        </div>
+                    </div>
+                    <a class="btn-download" href="course-ec/pdf/handout-06.pdf" download>
+                        ↓ 下载讲义 06
+                    </a>
+                </div>
+
+                <div class="pdf-card">
+                    <div class="pdf-icon-row">
+                        <div class="pdf-icon">📕</div>
+                        <div class="pdf-meta">
+                            <h3>幼儿学习观察记录表</h3>
+                            <span class="desc">教师用评估记录工具（可重复使用）</span>
+                        </div>
+                    </div>
+                    <a class="btn-download" href="course-ec/pdf/handout-07.pdf" download>
+                        ↓ 下载讲义 07
+                    </a>
+                </div>
+
+                <div class="pdf-card">
+                    <div class="pdf-icon-row">
+                        <div class="pdf-icon">📕</div>
+                        <div class="pdf-meta">
+                            <h3>课后行动计划工作表</h3>
+                            <span class="desc">个人专业发展目标制定与进度追踪</span>
+                        </div>
+                    </div>
+                    <a class="btn-download" href="course-ec/pdf/handout-08.pdf" download>
+                        ↓ 下载讲义 08
+                    </a>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <div class="course-footer">
+        © 2026 BBL学院 · 本课程资料仅供已注册学员使用，请勿转发或分享访问码。
+    </div>
+
+</div><!-- /course-content -->
+
+<script>
+    // ── Configuration ──────────────────────────────────────────────
+    // Change ACCESS_KEY to your chosen access code before uploading.
+    const ACCESS_KEY = 'BBL2026';
+    // ───────────────────────────────────────────────────────────────
+
+    // Restore session if already unlocked
+    (function () {
+        if (sessionStorage.getItem('ec_unlocked') === '1') {
+            document.getElementById('lock-screen').style.display = 'none';
+            document.getElementById('course-content').style.display = 'block';
+        }
+    })();
+
+    // Allow Enter key to submit
+    document.getElementById('access-key').addEventListener('keydown', function (e) {
+        if (e.key === 'Enter') unlock();
+    });
+
+    function unlock() {
+        var input = document.getElementById('access-key');
+        var errMsg = document.getElementById('error-msg');
+
+        if (input.value === ACCESS_KEY) {
+            sessionStorage.setItem('ec_unlocked', '1');
+            document.getElementById('lock-screen').style.display = 'none';
+            document.getElementById('course-content').style.display = 'block';
+        } else {
+            errMsg.style.display = 'block';
+            input.classList.add('error');
+            input.value = '';
+            input.focus();
+            setTimeout(function () { input.classList.remove('error'); }, 400);
+        }
+    }
+
+    function lockOut() {
+        sessionStorage.removeItem('ec_unlocked');
+        // Pause all media
+        document.querySelectorAll('audio, video').forEach(function (el) { el.pause(); });
+        document.getElementById('course-content').style.display = 'none';
+        document.getElementById('lock-screen').style.display = 'flex';
+        document.getElementById('access-key').value = '';
+        document.getElementById('error-msg').style.display = 'none';
+    }
+
+    function showTab(name, btn) {
+        // Deactivate all tabs and panels
+        document.querySelectorAll('.tab-btn').forEach(function (b) { b.classList.remove('active'); });
+        document.querySelectorAll('.tab-content').forEach(function (p) { p.classList.remove('active'); });
+        // Activate selected
+        btn.classList.add('active');
+        document.getElementById('tab-' + name).classList.add('active');
+        // Pause media in hidden tabs
+        document.querySelectorAll('.tab-content:not(.active) audio, .tab-content:not(.active) video')
+            .forEach(function (el) { el.pause(); });
+    }
+</script>
+</body>
+</html>

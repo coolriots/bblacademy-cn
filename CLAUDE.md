@@ -102,6 +102,30 @@ This is set in `styles.css` line 38 (the `body` rule).
 | Programmes | `programmes.html` | 培训项目 |
 | Contact Us | `contact.html` | 联系我们 |
 | Prof Er Meng Hwa | `prof-er-meng-hwa.html` | 余明华教授（不在导航中）|
+| Preschool Course | `preschool-course.html` | 幼儿教育脑基础学习课程（不在导航中，访问码保护）|
+
+### Standalone Protected Pages
+
+These pages are **not linked from the navigation** and are not synced to the English site.
+
+#### `preschool-course.html` — 幼儿教育脑基础学习课程
+- **URL:** `https://www.bblacademy.cn/preschool-course.html`
+- **Access control:** Client-side JavaScript key (currently `BBL2026` — change in `<script>` block at bottom of file)
+- **Purpose:** Hosts curriculum materials for pre-school teacher training on BBL
+- **Content:** 3 tabs — 8 audio episodes, 8 video lessons, 8 PDF handouts
+- **Media file path convention:** `course-ec/audio/episode-0N.mp3`, `course-ec/video/lesson-0N.mp4`, `course-ec/pdf/handout-0N.pdf`
+- **OSS upload:** Upload media files to the `course-ec/` folder in the `bblacademy-cn` bucket
+- **robots:** `noindex, nofollow` — not crawled by search engines
+- **To change access key:** Edit `const ACCESS_KEY = 'BBL2026';` near the bottom of the file
+
+**Uploading media files to OSS:**
+```python
+# Add to your oss2 upload script; upload each file individually with correct Content-Type
+type_map['.mp3'] = 'audio/mpeg'
+type_map['.mp4'] = 'video/mp4'
+# PDFs are already in the type_map as 'application/pdf'
+# Key example: 'course-ec/audio/episode-01.mp3'
+```
 
 ### File Structure
 ```
@@ -113,6 +137,7 @@ bbl-academy-cn/
 ├── contact.html
 ├── brain-share.html
 ├── prof-er-meng-hwa.html
+├── preschool-course.html   ← standalone, access-key protected, CN only
 ├── styles.css              ← Chinese system fonts; otherwise same as English
 ├── script.js               ← Identical to English site
 ├── BBL Academy Logo.jpg
